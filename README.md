@@ -1,6 +1,6 @@
 # Next Level Week 2 - Proffy
 
-This is a web application developed at NLW 1. NLW is an online event with lots of code, challenges, networking, and a single goal: Advancing to the next level.
+This is a web application developed at NLW 2. NLW is an online event with lots of code, challenges, networking, and a single goal: Advancing to the next level.
 
 ## Table of contents
 
