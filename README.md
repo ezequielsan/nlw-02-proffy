@@ -8,6 +8,11 @@ This is a web application developed at NLW 2. NLW is an online event with lots o
   - [The challenge](#the-challenge)
   - [Screenshot](#screenshot)
   - [Links](#links)
+- [Getting Started](#getting-startted)
+  - [Cloning repository](#cloning-repository)
+  - [Installing dependencies](#installing-dependencies)
+  - [Running server](#running-server)
+  - [Opening in browser](#opening-in-browser)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
@@ -38,6 +43,40 @@ Users should be able to:
 ### Links
 
 - Project Layout: [https://www.figma.com/file/GQNQIlm59RYOtD5JaQt9Fy/Proffy-Web?node-id=0%3A1](https://www.figma.com/file/GQNQIlm59RYOtD5JaQt9Fy/Proffy-Web?node-id=0%3A1)
+
+## Getting Started
+
+### Cloning repository
+
+In some terminal run the command below to download the repository on your local machine
+
+```
+git clone https://github.com/ezequielsan/nlw-02-proffy.git
+```
+
+### Installing dependencies
+
+Still with the terminal open run the command below to install the project dependencies
+
+```
+npm install
+# or
+npm i
+```
+
+### Running server
+
+Now, run the following command to start the server
+
+```
+npm run dev
+```
+
+### Opening in browser
+
+To see the application working, open your preferred browser and type the following command: http://localhost:5500
+
+
 
 ## My process
 
