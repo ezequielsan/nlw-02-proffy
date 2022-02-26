@@ -102,7 +102,7 @@ The `:focus-within` CSS pseudo-class matches an element if the element or any of
 
 **CSS `element1 > element2` Selector**
 
-Select and style every element1 element where the parent is a element2 element
+Select and style every element2 element where the parent is a element1 element
 
 ```css
 /* Selecione e estilize cada elemento <p> onde o pai é um elemento div.teacher-item */
@@ -126,14 +126,123 @@ imediatamente a seguir aos elementos .input-block e .select-block */
 }
 ```
 
+**JavaScript Destructuring Assignment**
+
+The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables.
+
+```js
+/* desempacotando array time (de duas posições) em duas variáveis: hour e minutes */
+const [hour, minutes] = time.split(':');
+
+/* desempacotando objeto exportado do arquivo pages.js */
+const { pageLanding, pageStudy, pageGiveClasses, saveClasses } = require('./pages');
+```
+
+**Configure nunjucks**
+
+nunjucks basic settings
+
+```js
+const nunjucks = require('nunjucks');
+  .
+  .
+  .
+// Configurar nunjucks (template engine)
+// passando localização das páginas a serem renderizadas e o servidor
+nunjucks.configure('src/views', {
+  express: server,
+  noCache: true,
+})
+```
+
+**For loop in nunjucks**
+
+Nunjucks repeat loop for popular html page with data coming from the backend.
+
+```html
+<!-- Populando lista de materias disoníveis -->
+{% for subject in subjects %}
+  <option value="{{ loop.index }}">{{ subject }}</option>
+{% endfor %}
+```
+
+**Conditional statement in nunjucks**
+```html
+{% if proffys == "" %} <!-- Se proffys for vazio, faça isso -->
+  <p>
+    Nenhum professor encontrado com sua pesquisa.
+  </p>
+{% else %} <!-- Se não, faça isso -->
+
+  <!-- Populando proffys dispoíveis -->
+  {% for proffy in proffys %}
+    <article class="teacher-item">
+      <header>
+        <img src="{{ proffy.avatar }}" alt="{{ proffy.name }}">
+        <div>
+          <!-- Acessando atributo name e subject de objeto proffy -->
+          <strong>{{ proffy.name }}</strong>
+          <span>{{ proffy.subject }}</span>
+        </div>
+      </header>
+
+      <p>
+        {{ proffy.bio }}
+      </p>
+
+      <footer>
+        <p>
+          Preço/hora
+          <strong>R$ {{ proffy.cost }}</strong>
+        </p>
+        <a href="https://api.whatsapp.com/send?l=pt_BR&phone=55{{ proffy.whatsapp }}&text=Tenho interesse na sua aula de {{ proffy.subject }}  {{ proffy.name }}" class="button" target="_blank">
+          <img src="./images/icons/whatsapp.svg" alt="Whatsapp">
+          Entrar em contato
+        </a>
+      </footer>
+    </article>
+  {% endfor %}
+{% endif %}
+```
+
+**Express Configuration**
+
+Exporting, configuring and using express to create the server and application routes.
+
+```js
+const express = require('express');
+const server = express();
+const PORT = process.env.ENV || 5500;
+
+// Início e configuração do servidor
+server
+
+  // receber os dados do req.body
+  .use(express.urlencoded({ extended: true }))
+
+  // configurar arquivos estáticos (scripts, css, imagens)
+  // passando localização dos arquivos estáticos
+  .use(express.static("public"))
+
+  // rotas da aplicação
+  .get("/", pageLanding)
+  .get("/study", pageStudy)
+  .get("/give-classes", pageGiveClasses)
+  .post("/save-classes", saveClasses)
+
+  // start do servidor
+  .listen(PORT, () => console.log(`Server is running http://localhost:${PORT}`))
+```
+
 ### Continued development
 
-It's been a while since I stopped studying Front-end Development because of university studies, but this week I'm going back to school, I intend to start again, getting back to basics and progressing, that is, I'm going to do many projects this year for my improvement in the area.
+It has been a while since I stopped studying Front-end development because of university classes, but during this vacation I will return to my studies, I intend to start again, going back to the basics and progressing, meaning I will do many projects this year for my improvement in the area.
 
 ### Useful resources
 
-- [Animation.css](https://animate.style) - This is the link to the Animation.css library website
-- [Valid property](https://css-tricks.com/almanac/selectors/v/valid/) - Here is the link that talks a little about the pseudo-element :valid
+- [JavaScript Destructuring Assignment](https://backefront.com.br/como-funciona-destructuring-js/) - Here is a link to an article about JavaScript Destructuring
+- [Nunjucks advanced loops](https://giuliachiola.dev/posts/nunjucks-advanced-loops/) - This is the link to an article about for-loops in nunjucks
+- [Add a class in Nunjucks using a conditional statement](https://giuliachiola.dev/posts/add-a-class-in-nunjucks-using-a-conditional-statement/) - This is the link to an article on if-else conditional at nunjucks
 
 ## Author
 
